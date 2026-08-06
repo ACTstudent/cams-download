@@ -24,3 +24,5 @@ jobs:
         with:
           path: .
       - uses: actions/deploy-pages@v4
+        with:
+          environment: github-pages

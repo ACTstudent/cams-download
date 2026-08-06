@@ -7,7 +7,7 @@
   <meta name="description" content="Download CAMS, the LAN classroom computer management system. Free, portable, zero-install.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,10 +19,9 @@
       <span class="led online"></span>
       <span class="mono-label">SYSTEM ONLINE</span>
     </div>
-    <a class="nav-link" href="#features">Features</a>
-    <a class="nav-link" href="#setup">Setup</a>
-    <a class="nav-link" href="#accounts">Accounts</a>
-    <a class="nav-link" href="#download">Download</a>
+    <button class="nav-link" onclick="switchTab('features')">Features</button>
+    <button class="nav-link" onclick="switchTab('setup')">Setup</button>
+    <button class="nav-link" onclick="switchTab('downloads')">Downloads</button>
   </nav>
 
   <!-- HERO -->
@@ -36,12 +35,12 @@
         own network. No cloud, no accounts, no install.
       </p>
       <div class="hero-buttons">
-        <a class="btn btn-primary" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Server-Portable.zip" download>
-          <span class="led accent"></span>Download Server
-        </a>
-        <a class="btn btn-outline" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Client-Portable.zip" download>
-          <span class="led accent"></span>Download Client
-        </a>
+        <button class="btn btn-primary" onclick="switchTab('downloads')">
+          <span class="led accent"></span>Go to Downloads
+        </button>
+        <button class="btn btn-outline" onclick="switchTab('setup')">
+          <span class="led"></span>Setup Guide
+        </button>
       </div>
     </div>
 
@@ -66,151 +65,260 @@
     </div>
   </header>
 
-  <!-- FEATURES -->
-  <section class="section" id="features">
-    <div class="section-header">
-      <p class="mono-label">FEATURES</p>
-      <h2>Built for the <span class="accent-text">LAN</span>, not the cloud.</h2>
+  <!-- TAB NAVIGATION CONTROL -->
+  <div class="tabs-container">
+    <div class="tabs-bar">
+      <button class="tab-btn active" id="btn-tab-features" onclick="switchTab('features')">
+        <span class="led accent"></span>1. FEATURES
+      </button>
+      <button class="tab-btn" id="btn-tab-setup" onclick="switchTab('setup')">
+        <span class="led"></span>2. SETUP &amp; GUIDE
+      </button>
+      <button class="tab-btn" id="btn-tab-downloads" onclick="switchTab('downloads')">
+        <span class="led"></span>3. DOWNLOADS
+      </button>
     </div>
-    <div class="feature-grid">
+  </div>
 
-      <div class="feature-card">
-        <div class="feature-vents">
-          <span class="feature-vent"></span><span class="feature-vent"></span><span class="feature-vent"></span>
-        </div>
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"></circle>
-            <circle cx="12" cy="12" r="3.5"></circle>
-            <line x1="12" y1="12" x2="20" y2="12"></line>
-            <line x1="12" y1="12" x2="16.5" y2="5.5"></line>
-            <line x1="12" y1="12" x2="7.5" y2="5.5"></line>
-          </svg>
-        </div>
-        <h3>Auto-Discovery</h3>
-        <p>Clients find the server automatically over the LAN with zero configuration. No IP hunting, no setup wizards — plug in and connect.</p>
+  <!-- TAB 1: FEATURES -->
+  <div class="tab-panel active" id="tab-features">
+    <section class="section">
+      <div class="section-header">
+        <p class="mono-label">SYSTEM CAPABILITIES</p>
+        <h2>Features &amp; <span class="accent-text">Role Modules</span></h2>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-vents">
-          <span class="feature-vent"></span><span class="feature-vent"></span><span class="feature-vent"></span>
+      <div class="feature-grid">
+
+        <div class="feature-card">
+          <div class="feature-vents">
+            <span class="feature-vent"></span><span class="feature-vent"></span><span class="feature-vent"></span>
+          </div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <circle cx="12" cy="12" r="3.5"></circle>
+              <line x1="12" y1="12" x2="20" y2="12"></line>
+            </svg>
+          </div>
+          <span class="badge badge-implemented">v2.5 Implemented</span>
+          <h3>UDP Auto-Discovery</h3>
+          <p>Clients automatically discover the CAMS server on local subnet port 5001. No static IP or manual typing required.</p>
         </div>
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2l8 4v12l-8 4-8-4V6l8-4z"></path>
-            <line x1="12" y1="22" x2="12" y2="12"></line>
-            <line x1="4" y1="6" x2="12" y2="10"></line>
-            <line x1="20" y1="6" x2="12" y2="10"></line>
-          </svg>
+
+        <div class="feature-card">
+          <div class="feature-vents">
+            <span class="feature-vent"></span><span class="feature-vent"></span><span class="feature-vent"></span>
+          </div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <span class="badge badge-implemented">v2.5 Implemented</span>
+          <h3>Live Screen Monitoring</h3>
+          <p>Real-time SignalR WebSocket streaming allows teachers and admins to view active student screens with low latency.</p>
         </div>
-        <h3>Portable, Zero Install</h3>
-        <p>Both server and client run straight from a single executable. Carry them on a USB stick — nothing is installed on student machines.</p>
+
+        <div class="feature-card">
+          <div class="feature-vents">
+            <span class="feature-vent"></span><span class="feature-vent"></span><span class="feature-vent"></span>
+          </div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <span class="badge badge-implemented">v2.5 Implemented</span>
+          <h3>Class &amp; Student Management</h3>
+          <p>Full CRUD for Classes, Teacher-to-Student allocations, and computer assignments directly from the web dashboard.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-vents">
+            <span class="feature-vent"></span><span class="feature-vent"></span><span class="feature-vent"></span>
+          </div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <span class="badge badge-implemented">v2.5 Implemented</span>
+          <h3>Role-Based Security</h3>
+          <p>Strict Hub authorization checks, CSRF AntiForgery tokens, and login rate-limiting (5 fails/IP/60s) keep the network secure.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-vents">
+            <span class="feature-vent"></span><span class="feature-vent"></span><span class="feature-vent"></span>
+          </div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </div>
+          <span class="badge badge-implemented">v2.5 Implemented</span>
+          <h3>Multi-Database Support</h3>
+          <p>Runs out of the box with SQLite (`CAMS.db`), or switch to SQL Server / MySQL seamlessly via `appsettings.json`.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-vents">
+            <span class="feature-vent"></span><span class="feature-vent"></span><span class="feature-vent"></span>
+          </div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <span class="badge badge-implemented">v2.5 Implemented</span>
+          <h3>Auto-Launch Dashboard</h3>
+          <p>Running `Server.exe` automatically opens the default web browser to the dashboard — zero manual steps.</p>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- TAB 2: SETUP & GUIDE -->
+  <div class="tab-panel" id="tab-setup">
+    <section class="section">
+      <div class="section-header">
+        <p class="mono-label">SETUP &amp; DOCUMENTATION</p>
+        <h2>Installation &amp; <span class="accent-text">Requirements</span></h2>
       </div>
 
-      <div class="feature-card">
-        <div class="feature-vents">
-          <span class="feature-vent"></span><span class="feature-vent"></span><span class="feature-vent"></span>
+      <!-- Quick Steps -->
+      <div class="steps-grid" style="margin-bottom: 48px;">
+        <div class="step">
+          <span class="step-connector"></span>
+          <span class="step-number">01</span>
+          <h3>Start Server</h3>
+          <p>Extract `CAMS-Server-Portable.zip` on the teacher PC and double-click `Server.exe`. The browser opens automatically.</p>
         </div>
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"></rect>
-            <line x1="8" y1="21" x2="16" y2="21"></line>
-            <line x1="12" y1="17" x2="12" y2="21"></line>
-            <line x1="5" y1="8" x2="8" y2="11"></line>
-            <line x1="19" y1="8" x2="16" y2="11"></line>
-          </svg>
+        <div class="step">
+          <span class="step-connector"></span>
+          <span class="step-number">02</span>
+          <h3>Run Student Client</h3>
+          <p>Run `CAMS-Client-Portable.exe` on student PCs. It broadcasts on UDP 5001 and auto-connects to the server.</p>
         </div>
-        <h3>Real-Time Monitoring</h3>
-        <p>Watch every connected machine live. Admins, teachers and students each get role-scoped control over the classroom network.</p>
+        <div class="step">
+          <span class="step-number">03</span>
+          <h3>Log In &amp; Manage</h3>
+          <p>Log in using default credentials (Admin/Teacher/Student). Monitor screens, manage classes, and allocate resources.</p>
+        </div>
       </div>
 
-    </div>
-  </section>
-
-  <!-- STEPS -->
-  <section class="section" id="setup">
-    <div class="section-header">
-      <p class="mono-label">QUICK START</p>
-      <h2>Up and running in <span class="accent-text">3 steps</span>.</h2>
-    </div>
-    <div class="steps-grid">
-      <div class="step">
-        <span class="step-connector"></span>
-        <span class="step-number">01</span>
-        <h3>Download the Server</h3>
-        <p>Run CAMS-Server on the teacher's machine. It auto-starts and broadcasts its address on the LAN.</p>
+      <!-- System Requirements Table -->
+      <div class="credentials-card" style="max-width: 900px; margin-bottom: 48px;">
+        <p class="cred-title">SYSTEM REQUIREMENTS &amp; PREREQUISITES</p>
+        <table class="requirements-table">
+          <tr>
+            <td><strong>Operating System</strong></td>
+            <td>Windows 10 / 11 (x64)</td>
+            <td><span class="badge badge-implemented">Required</span></td>
+          </tr>
+          <tr>
+            <td><strong>Runtime Framework</strong></td>
+            <td>.NET 8.0 Runtime (Self-contained in Portable zip)</td>
+            <td><span class="badge badge-implemented">Bundled</span></td>
+          </tr>
+          <tr>
+            <td><strong>Network</strong></td>
+            <td>Local Area Network (LAN / Wi-Fi) with UDP broadcast enabled</td>
+            <td><span class="badge badge-implemented">Required</span></td>
+          </tr>
+          <tr>
+            <td><strong>Ports</strong></td>
+            <td>Port 5000 (HTTP Web Dashboard) &amp; Port 5001 (UDP Discovery)</td>
+            <td><span class="badge badge-implemented">Allowed</span></td>
+          </tr>
+        </table>
       </div>
-      <div class="step">
-        <span class="step-connector"></span>
-        <span class="step-number">02</span>
-        <h3>Install Clients</h3>
-        <p>Launch CAMS-Client on each student PC. The server is found automatically — or type its IP if needed.</p>
-      </div>
-      <div class="step">
-        <span class="step-number">03</span>
-        <h3>Log In &amp; Control</h3>
-        <p>Sign in as Admin, Teacher or Student. Your role decides what you can see and manage on the network.</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- CREDENTIALS -->
-  <section class="section" id="accounts">
-    <div class="section-header">
-      <p class="mono-label">DEFAULT ACCOUNTS</p>
-      <h2>Log in with a <span class="accent-text">default role</span>.</h2>
-    </div>
-    <div class="credentials-card">
-      <p class="cred-title">SEEDED CREDENTIALS</p>
-      <div class="credential-row"><span class="mono">admin</span><span>/</span><span class="mono">admin123</span><span class="role-tag">Admin</span></div>
-      <div class="credential-row"><span class="mono">teacher1</span><span>/</span><span class="mono">teacher123</span><span class="role-tag">Teacher</span></div>
-      <div class="credential-row"><span class="mono">student1</span><span>/</span><span class="mono">student123</span><span class="role-tag">Student</span></div>
-      <p class="credential-note">Change the default passwords immediately after the first login.</p>
-    </div>
-  </section>
-
-  <!-- FINAL CTA / DOWNLOAD -->
-  <section class="section" id="download">
-    <div class="section-header">
-      <p class="mono-label">DOWNLOAD CENTER</p>
-      <h2>Grab both <span class="accent-text">builds</span>.</h2>
-    </div>
-    <div class="cta-grid">
-      <div class="cta-card">
-        <div class="cta-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="8" rx="2"></rect>
-            <rect x="2" y="14" width="20" height="8" rx="2"></rect>
-            <line x1="6" y1="6" x2="6.01" y2="6"></line>
-            <line x1="6" y1="18" x2="6.01" y2="18"></line>
-          </svg>
+      <!-- FAQ & Troubleshooting -->
+      <div class="section-header" style="margin-top: 32px; margin-bottom: 24px;">
+        <p class="mono-label">HELP &amp; TROUBLESHOOTING</p>
+        <h3>Frequently Asked Questions</h3>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-card">
+          <h4>Q: What if the client cannot find the server automatically?</h4>
+          <p>Ensure both machines are on the same LAN subnet and Windows Firewall allows UDP port 5001. You can also manually type `http://<SERVER_IP>:5000/remoteMonitoringHub` into the Client window.</p>
         </div>
-        <h2>CAMS Server</h2>
-        <p class="version mono">v2.5 &middot; Windows x64 &middot; ~19 MB</p>
-        <p class="text-muted">Run on the teacher's machine. Hosts the network, the monitoring dashboard and the account database.</p>
-        <a class="btn btn-primary" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Server-Portable.zip" download>
-          <span class="led accent"></span>Download Server
-        </a>
-      </div>
-      <div class="cta-card">
-        <div class="cta-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="8" rx="2"></rect>
-            <rect x="2" y="14" width="20" height="8" rx="2"></rect>
-            <line x1="6" y1="6" x2="6.01" y2="6"></line>
-            <line x1="6" y1="18" x2="6.01" y2="18"></line>
-          </svg>
+        <div class="faq-card">
+          <h4>Q: How do I change the default database?</h4>
+          <p>In `appsettings.json`, set `"DatabaseProvider": "Sqlite"` (default `CAMS.db`), `"SqlServer"`, or `"MySql"` along with your connection string.</p>
         </div>
-        <h2>CAMS Client</h2>
-        <p class="version mono">v2.5 &middot; Windows x64 &middot; ~65 MB</p>
-        <p class="text-muted">Run on every student PC. Auto-discovers the server and connects in seconds — nothing is installed.</p>
-        <a class="btn btn-outline" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Client-Portable.zip" download>
-          <span class="led accent"></span>Download Client
-        </a>
+        <div class="faq-card">
+          <h4>Q: Windows SmartScreen blocked the application?</h4>
+          <p>Because the binaries are built locally without an EV code-signing certificate, click "More info" &rarr; "Run anyway".</p>
+        </div>
       </div>
-    </div>
-    <p class="cta-note">Direct download from the latest GitHub release. SmartScreen may prompt — click "More info" &rarr; "Run anyway".</p>
-  </section>
+    </section>
+  </div>
+
+  <!-- TAB 3: DOWNLOADS -->
+  <div class="tab-panel" id="tab-downloads">
+    <section class="section">
+      <div class="section-header">
+        <p class="mono-label">DOWNLOAD CENTER</p>
+        <h2>Release Builds &amp; <span class="accent-text">Credentials</span></h2>
+      </div>
+
+      <!-- Downloads Grid -->
+      <div class="cta-grid" style="margin-bottom: 48px;">
+        <div class="cta-card">
+          <div class="cta-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+          </div>
+          <h2>CAMS Server</h2>
+          <p class="version mono">v2.5 &middot; Windows x64 &middot; ~19 MB</p>
+          <p class="text-muted">Hosts the LAN server, web monitoring dashboard, SignalR hub, and database management system.</p>
+          <a class="btn btn-primary" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Server-Portable.zip" download>
+            <span class="led accent"></span>Download Server Portable (.zip)
+          </a>
+        </div>
+
+        <div class="cta-card">
+          <div class="cta-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+          </div>
+          <h2>CAMS Client</h2>
+          <p class="version mono">v2.5 &middot; Windows x64 &middot; ~65 MB</p>
+          <p class="text-muted">Runs on student machines. Auto-discovers server over UDP 5001 and streams screen state.</p>
+          <a class="btn btn-outline" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Client-Portable.zip" download>
+            <span class="led accent"></span>Download Client Portable (.zip)
+          </a>
+        </div>
+      </div>
+
+      <!-- Seeded Credentials Card -->
+      <div class="credentials-card">
+        <p class="cred-title">DEFAULT SEEDED ACCOUNTS</p>
+        <div class="credential-row"><span class="mono">admin</span><span>/</span><span class="mono">admin123</span><span class="role-tag">Admin</span></div>
+        <div class="credential-row"><span class="mono">teacher1</span><span>/</span><span class="mono">teacher123</span><span class="role-tag">Teacher</span></div>
+        <div class="credential-row"><span class="mono">student1</span><span>/</span><span class="mono">student123</span><span class="role-tag">Student</span></div>
+        <p class="credential-note">Important: Change default passwords in the Admin Settings panel immediately after initial startup.</p>
+      </div>
+    </section>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -219,6 +327,34 @@
     <a href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/blob/main/LICENSE">License</a>
     <span>&copy; 2026 CAMS &middot; Built for LAN classrooms</span>
   </footer>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        const isTarget = btn.id === 'btn-tab-' + tabId;
+        btn.classList.toggle('active', isTarget);
+        const led = btn.querySelector('.led');
+        if (led) {
+          led.classList.toggle('accent', isTarget);
+        }
+      });
+
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.id === 'tab-' + tabId);
+      });
+
+      window.location.hash = tabId;
+      window.scrollTo({ top: document.querySelector('.tabs-container').offsetTop - 20, behavior: 'smooth' });
+    }
+
+    // Auto-switch based on URL hash
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '');
+      if (['features', 'setup', 'downloads'].includes(hash)) {
+        switchTab(hash);
+      }
+    });
+  </script>
 
 </body>
 </html>

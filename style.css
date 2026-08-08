@@ -13,6 +13,7 @@
   --accent: #ff4757;
   --accent-dark: #d6303f;
   --accent-light: #ff6b75;
+  --accent-text: #b80000;
   --shadow-dark: #babecc;
   --shadow-light: #ffffff;
   --deep-shadow: #a3b1c6;
@@ -72,7 +73,7 @@ h3 { font-size: 1.25rem; font-weight: 600; }
 .mono-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
 .stat { font-size: 1.8rem; font-weight: 500; }
 
-.accent-text { color: var(--accent); }
+.accent-text { color: var(--accent-text); }
 .text-muted { color: var(--text-muted); }
 
 /* ---- LED INDICATOR ---- */
@@ -107,7 +108,7 @@ h3 { font-size: 1.25rem; font-weight: 600; }
   filter: brightness(0.95);
 }
 .btn-outline {
-  background: var(--bg); color: var(--accent);
+  background: var(--bg); color: var(--accent-text);
   box-shadow: var(--shadow-card);
 }
 .btn-outline:hover { color: var(--accent-dark); box-shadow: var(--shadow-floating); }
@@ -125,7 +126,7 @@ h3 { font-size: 1.25rem; font-weight: 600; }
   color: var(--text-muted); text-decoration: none; padding: 8px 16px;
   border-radius: var(--radius-md); transition: all 200ms ease;
 }
-.nav-link:hover { color: var(--accent); background: var(--bg); box-shadow: var(--shadow-recessed); }
+.nav-link:hover { color: var(--accent-text); background: var(--bg); box-shadow: var(--shadow-recessed); }
 
 /* ---- HERO ---- */
 .hero {
@@ -295,7 +296,7 @@ h3 { font-size: 1.25rem; font-weight: 600; }
 }
 .cred-title {
   font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; text-transform: uppercase;
-  letter-spacing: 0.08em; font-weight: 600; color: var(--accent); margin-bottom: 16px;
+  letter-spacing: 0.08em; font-weight: 600; color: var(--accent-text); margin-bottom: 16px;
 }
 
 .credential-row {
@@ -388,7 +389,7 @@ h3 { font-size: 1.25rem; font-weight: 600; }
   color: var(--text);
 }
 .tab-btn.active {
-  color: var(--accent);
+  color: var(--accent-text);
   background: var(--bg);
   box-shadow: var(--shadow-card);
 }
@@ -479,7 +480,7 @@ h3 { font-size: 1.25rem; font-weight: 600; }
   font-size: 0.75rem; color: var(--text-muted);
 }
 .footer a { color: var(--text-muted); text-decoration: none; transition: color 200ms; }
-.footer a:hover { color: var(--accent); }
+.footer a:hover { color: var(--accent-text); }
 .footer .led { margin-right: 4px; }
 
 /* ---- RESPONSIVE ---- */
@@ -768,7 +769,7 @@ h3 { font-size: 1.25rem; font-weight: 600; }
 /* Focus Visible for Keyboard Navigation */
 :focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px var(--accent), var(--shadow-floating);
+  box-shadow: 0 0 0 3px var(--accent-text), var(--shadow-floating);
   transform: translateY(-2px) translateZ(10px) !important;
 }
 

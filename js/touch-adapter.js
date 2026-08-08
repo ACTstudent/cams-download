@@ -303,12 +303,14 @@
       
       /* Focus visible for keyboard users on touch devices */
       .touch-device :focus-visible {
-        outline: 3px solid var(--accent) !important;
+        outline: 3px solid var(--accent-text) !important;
         outline-offset: 2px !important;
-        box-shadow: 0 0 0 3px var(--accent), var(--shadow-floating) !important;
+        box-shadow: 0 0 0 3px var(--accent-text), var(--shadow-floating) !important;
       }
     `;
-    document.head.appendChild(style);
+    if (!document.getElementById('touch-active-styles')) {
+      document.head.appendChild(style);
+    }
   }
 
   // Initialize when DOM is ready

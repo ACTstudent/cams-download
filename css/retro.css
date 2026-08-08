@@ -1,0 +1,32 @@
+/* Retro/90s design system */
+:root {
+  --bg:#C0C0C0;
+  --fg:#000000;
+  --accent:#0000FF;
+  --hover:#FF0000;
+  --visited:#800080;
+  --border:#000000;
+  --titlebar:linear-gradient(to right,#000080,#1084d0);
+  --bevel-out:#ffffff #808080 #808080 #ffffff;
+  --bevel-in:#808080 #ffffff #ffffff #808080;
+  --font-body:"MS Sans Serif", Tahoma, sans-serif;
+  --font-heading:"Arial Black", Impact, sans-serif;
+}
+
+html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:var(--font-body);} 
+
+h1,h2,h3{font-family:var(--font-heading);font-weight:bold;}
+
+.window-outset{border:2px solid;border-color:var(--bevel-out);background:#fff;box-shadow:inset -1px -1px 0 #404040,inset 1px 1px 0 #dfdfdf;padding:12px;margin:8px;}
+.window-inset{border:2px solid;border-color:var(--bevel-in);box-shadow:inset 1px 1px 0 #404040,inset -1px -1px 0 #dfdfdf;}
+
+a{color:var(--accent);text-decoration:underline;}
+a:visited{color:var(--visited);}
+a:hover{color:var(--hover);}
+
+@keyframes rainbow{0%{color:#ff0000;}17%{color:#ff8000;}33%{color:#ffff00;}50%{color:#00ff00;}67%{color:#0080ff;}83%{color:#8000ff;}100%{color:#ff0000;}}
+.rainbow{animation:rainbow 4s linear infinite;}
+
+.hr-groove{border:none;height:4px;background:linear-gradient(to bottom,#808080 0%,#808080 50%,#fff 50%,#fff 100%);}
+
+*{box-sizing:border-box;}

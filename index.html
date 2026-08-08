@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CAMS — Computer Account Management System</title>
-  <meta name="description" content="Download CAMS, the LAN classroom computer management system. Free, portable, zero-install.">
+  <meta name="description" content="Download CAMS, the LAN classroom computer management system. Free installers, zero config.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -32,7 +32,7 @@
       <p class="hero-tagline">
         CAMS is a lightweight LAN classroom management system. Auto-discovery,
         real-time monitoring, and role-based control — running entirely on your
-        own network. No cloud, no accounts, no install.
+        own network. No cloud, no accounts, just click the installer.
       </p>
       <div class="hero-buttons">
         <button class="btn btn-primary" onclick="switchTab('downloads')">
@@ -72,7 +72,7 @@
         <span class="led accent"></span>1. FEATURES
       </button>
       <button class="tab-btn" id="btn-tab-setup" onclick="switchTab('setup')">
-        <span class="led"></span>2. SETUP &amp; GUIDE
+        <span class="led"></span>2. SETUP & GUIDE
       </button>
       <button class="tab-btn" id="btn-tab-downloads" onclick="switchTab('downloads')">
         <span class="led"></span>3. DOWNLOADS
@@ -85,7 +85,7 @@
     <section class="section">
       <div class="section-header">
         <p class="mono-label">SYSTEM CAPABILITIES</p>
-        <h2>Features &amp; <span class="accent-text">Role Modules</span></h2>
+        <h2>Features & <span class="accent-text">Role Modules</span></h2>
       </div>
 
       <div class="feature-grid">
@@ -135,7 +135,7 @@
             </svg>
           </div>
           <span class="badge badge-implemented">v2.5 Implemented</span>
-          <h3>Class &amp; Student Management</h3>
+          <h3>Class & Student Management</h3>
           <p>Full CRUD for Classes, Teacher-to-Student allocations, and computer assignments directly from the web dashboard.</p>
         </div>
 
@@ -190,8 +190,8 @@
   <div class="tab-panel" id="tab-setup">
     <section class="section">
       <div class="section-header">
-        <p class="mono-label">SETUP &amp; DOCUMENTATION</p>
-        <h2>Installation &amp; <span class="accent-text">Requirements</span></h2>
+        <p class="mono-label">SETUP & DOCUMENTATION</p>
+        <h2>Installation & <span class="accent-text">Requirements</span></h2>
       </div>
 
       <!-- Quick Steps -->
@@ -199,25 +199,25 @@
         <div class="step">
           <span class="step-connector"></span>
           <span class="step-number">01</span>
-          <h3>Start Server</h3>
-          <p>Extract `CAMS-Server-Portable.zip` on the teacher PC and double-click `Server.exe`. The browser opens automatically.</p>
+          <h3>Install Server</h3>
+          <p>Download <strong>CAMS-Server-Setup.exe</strong> on the teacher PC and double-click. The installer opens firewall, creates shortcuts, and auto-launches the dashboard.</p>
         </div>
         <div class="step">
           <span class="step-connector"></span>
           <span class="step-number">02</span>
-          <h3>Run Student Client</h3>
-          <p>Run `CAMS-Client-Portable.exe` on student PCs. It broadcasts on UDP 5001 and auto-connects to the server.</p>
+          <h3>Install Clients</h3>
+          <p>Download <strong>CAMS-Client-Setup.exe</strong> on each student PC. The installer prompts for the server address and auto-launches the client.</p>
         </div>
         <div class="step">
           <span class="step-number">03</span>
-          <h3>Log In &amp; Manage</h3>
+          <h3>Log In & Manage</h3>
           <p>Log in using default credentials (Admin/Teacher/Student). Monitor screens, manage classes, and allocate resources.</p>
         </div>
       </div>
 
       <!-- System Requirements Table -->
       <div class="credentials-card" style="max-width: 900px; margin-bottom: 48px;">
-        <p class="cred-title">SYSTEM REQUIREMENTS &amp; PREREQUISITES</p>
+        <p class="cred-title">SYSTEM REQUIREMENTS & PREREQUISITES</p>
         <table class="requirements-table">
           <tr>
             <td><strong>Operating System</strong></td>
@@ -226,7 +226,7 @@
           </tr>
           <tr>
             <td><strong>Runtime Framework</strong></td>
-            <td>.NET 8.0 Runtime (Self-contained in Portable zip)</td>
+            <td>.NET 8.0 Runtime (Self-contained in installer)</td>
             <td><span class="badge badge-implemented">Bundled</span></td>
           </tr>
           <tr>
@@ -236,7 +236,7 @@
           </tr>
           <tr>
             <td><strong>Ports</strong></td>
-            <td>Port 5000 (HTTP Web Dashboard) &amp; Port 5001 (UDP Discovery)</td>
+            <td>Port 5000 (HTTP Web Dashboard) & Port 5001 (UDP Discovery)</td>
             <td><span class="badge badge-implemented">Allowed</span></td>
           </tr>
         </table>
@@ -244,13 +244,13 @@
 
       <!-- FAQ & Troubleshooting -->
       <div class="section-header" style="margin-top: 32px; margin-bottom: 24px;">
-        <p class="mono-label">HELP &amp; TROUBLESHOOTING</p>
+        <p class="mono-label">HELP & TROUBLESHOOTING</p>
         <h3>Frequently Asked Questions</h3>
       </div>
       <div class="faq-grid">
         <div class="faq-card">
           <h4>Q: What if the client cannot find the server automatically?</h4>
-          <p>Ensure both machines are on the same LAN subnet and Windows Firewall allows UDP port 5001. You can also manually type `http://<SERVER_IP>:5000/remoteMonitoringHub` into the Client window.</p>
+          <p>Ensure both machines are on the same LAN subnet and Windows Firewall allows UDP port 5001. The installer prompts for manual server address if auto-discovery fails.</p>
         </div>
         <div class="faq-card">
           <h4>Q: How do I change the default database?</h4>
@@ -269,7 +269,7 @@
     <section class="section">
       <div class="section-header">
         <p class="mono-label">DOWNLOAD CENTER</p>
-        <h2>Release Builds &amp; <span class="accent-text">Credentials</span></h2>
+        <h2>Release Installers & <span class="accent-text">Credentials</span></h2>
       </div>
 
       <!-- Downloads Grid -->
@@ -283,11 +283,11 @@
               <line x1="6" y1="18" x2="6.01" y2="18"></line>
             </svg>
           </div>
-          <h2>CAMS Server</h2>
-          <p class="version mono">v2.5 &middot; Windows x64 &middot; ~19 MB</p>
-          <p class="text-muted">Hosts the LAN server, web monitoring dashboard, SignalR hub, and database management system.</p>
-          <a class="btn btn-primary" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Server-Portable.zip" download>
-            <span class="led accent"></span>Download Server Portable (.zip)
+          <h2>CAMS Server Installer</h2>
+          <p class="version mono">v2.5 &middot; Windows x64 &middot; ~14 MB</p>
+          <p class="text-muted">Installs the LAN server, web monitoring dashboard, SignalR hub, and database management system. Auto-opens firewall and dashboard.</p>
+          <a class="btn btn-primary" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Server-Setup.exe" download>
+            <span class="led accent"></span>Download Server Installer (.exe)
           </a>
         </div>
 
@@ -300,11 +300,11 @@
               <line x1="6" y1="18" x2="6.01" y2="18"></line>
             </svg>
           </div>
-          <h2>CAMS Client</h2>
-          <p class="version mono">v2.5 &middot; Windows x64 &middot; ~65 MB</p>
-          <p class="text-muted">Runs on student machines. Auto-discovers server over UDP 5001 and streams screen state.</p>
-          <a class="btn btn-outline" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Client-Portable.zip" download>
-            <span class="led accent"></span>Download Client Portable (.zip)
+          <h2>CAMS Client Installer</h2>
+          <p class="version mono">v2.5 &middot; Windows x64 &middot; ~64 MB</p>
+          <p class="text-muted">Installs on each student PC. Prompts for server address, connects automatically, and runs silently in the background.</p>
+          <a class="btn btn-outline" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Client-Setup.exe" download>
+            <span class="led accent"></span>Download Client Installer (.exe)
           </a>
         </div>
       </div>

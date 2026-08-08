@@ -14,6 +14,7 @@
   --accent-dark: #d6303f;
   --accent-light: #ff6b75;
   --accent-text: #b80000;
+  --accent-btn: var(--accent);
   --shadow-dark: #babecc;
   --shadow-light: #ffffff;
   --deep-shadow: #a3b1c6;

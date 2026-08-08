@@ -28,7 +28,7 @@
     '.cta-card',
     '.step',
     '.faq-card',
-    .credentials-card
+    '.credentials-card'
   ];
 
   // State

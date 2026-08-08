@@ -503,3 +503,319 @@ h3 { font-size: 1.25rem; font-weight: 600; }
   .nav { gap: 8px; }
   .header-buttons { flex-direction: column; }
 }
+
+/* ============================================================
+   PHASE 1: 3D FOUNDATION & CSS INFRASTRUCTURE
+   ============================================================ */
+
+/* ---- 3D DESIGN TOKENS ---- */
+:root {
+  /* 3D Perspective & Depth */
+  --perspective: 1000px;
+  --perspective-close: 600px;
+  --max-tilt: 6deg;
+  --max-tilt-hero: 8deg;
+  --lift-distance: 8px;
+  --lift-distance-hero: 12px;
+  --magnetic-strength: 6px;
+  --magnetic-strength-btn: 8px;
+  --press-depth: 2px;
+  
+  /* Transition Timing */
+  --transition-smooth: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-snappy: 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-spring: 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --transition-slow: 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Parallax Depth Factors */
+  --parallax-depth-bg: 0.02;
+  --parallax-depth-mid: 0.08;
+  --parallax-depth-fg: 0.15;
+  --parallax-depth-hero: 0.25;
+  
+  /* Magnetic */
+  --magnetic-radius: 120px;
+  --magnetic-radius-btn: 80px;
+  
+  /* Cursor Glow */
+  --cursor-glow-size: 300px;
+  --cursor-glow-opacity: 0.15;
+  
+  /* Z-index layers */
+  --z-bg: 0;
+  --z-content: 10;
+  --z-floating: 20;
+  --z-ui: 50;
+  --z-cursor: 100;
+  --z-noise: 9999;
+}
+
+/* ---- 3D UTILITY CLASSES ---- */
+
+/* 3D Perspective Wrapper */
+.perspective-wrapper {
+  perspective: var(--perspective);
+  perspective-origin: center center;
+  transform-style: preserve-3d;
+}
+
+.perspective-wrapper-close {
+  perspective: var(--perspective-close);
+}
+
+/* Preserve 3D for nested transforms */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Parallax Layers */
+.parallax-layer {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform var(--transition-snappy);
+}
+
+.parallax-layer[data-depth="bg"] { --depth-factor: var(--parallax-depth-bg); }
+.parallax-layer[data-depth="mid"] { --depth-factor: var(--parallax-depth-mid); }
+.parallax-layer[data-depth="fg"] { --depth-factor: var(--parallax-depth-fg); }
+.parallax-layer[data-depth="hero"] { --depth-factor: var(--parallax-depth-hero); }
+
+/* 3D Tilt Interaction */
+.tilt-3d {
+  transform-style: preserve-3d;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+  will-change: transform, box-shadow;
+}
+
+.tilt-3d:hover {
+  box-shadow: var(--shadow-floating), 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* 3D Lift on Hover */
+.lift-3d {
+  transform-style: preserve-3d;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+  will-change: transform, box-shadow;
+}
+
+.lift-3d:hover {
+  transform: translateY(calc(var(--lift-distance) * -1)) translateZ(var(--lift-distance));
+  box-shadow: var(--shadow-floating), 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.lift-3d:active {
+  transform: translateY(var(--press-depth)) translateZ(0) scale(0.99);
+  box-shadow: var(--shadow-pressed);
+  transition: transform 50ms, box-shadow 50ms;
+}
+
+/* Hero-specific lift */
+.lift-3d-hero:hover {
+  transform: translateY(calc(var(--lift-distance-hero) * -1)) translateZ(var(--lift-distance-hero));
+}
+
+/* Magnetic Interaction */
+.magnetic {
+  transition: transform var(--transition-snappy);
+  will-change: transform;
+}
+
+.magnetic-btn {
+  transition: transform var(--transition-snappy);
+  will-change: transform;
+}
+
+/* Press State */
+.press-3d:active {
+  transform: translateY(var(--press-depth)) translateZ(0) scale(0.99);
+  box-shadow: var(--shadow-pressed);
+  transition: transform 50ms, box-shadow 50ms;
+}
+
+/* 3D Reveal Animation */
+@keyframes reveal-3d {
+  from {
+    opacity: 0;
+    transform: translateZ(-100px) rotateX(15deg) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0) rotateX(0) translateY(0);
+  }
+}
+
+.reveal-3d {
+  opacity: 0;
+  animation: reveal-3d var(--transition-slow) forwards;
+}
+
+.reveal-3d-delay-1 { animation-delay: 100ms; }
+.reveal-3d-delay-2 { animation-delay: 200ms; }
+.reveal-3d-delay-3 { animation-delay: 300ms; }
+.reveal-3d-delay-4 { animation-delay: 400ms; }
+.reveal-3d-delay-5 { animation-delay: 500ms; }
+.reveal-3d-delay-6 { animation-delay: 600ms; }
+
+/* Floating Animation for Decorative Elements */
+@keyframes float-3d {
+  0%, 100% { transform: translate3d(0, 0, 0) rotateY(0deg) rotateX(0deg); }
+  25% { transform: translate3d(10px, -10px, 10px) rotateY(2deg) rotateX(-1deg); }
+  50% { transform: translate3d(-8px, 8px, -5px) rotateY(-1deg) rotateX(2deg); }
+  75% { transform: translate3d(5px, -5px, 8px) rotateY(1deg) rotateX(-2deg); }
+}
+
+.float-3d {
+  animation: float-3d 20s ease-in-out infinite;
+  will-change: transform;
+}
+
+.float-3d-slow { animation-duration: 30s; }
+.float-3d-fast { animation-duration: 15s; }
+
+/* Pulse Glow for Interactive Elements */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: var(--shadow-glow-red); }
+  50% { box-shadow: 0 0 20px 4px rgba(255, 71, 87, 0.7); }
+}
+
+.pulse-glow:hover {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Magnetic Attraction Visual */
+.magnetic-active {
+  transform: translateZ(20px);
+}
+
+/* Cursor Glow Effect */
+.cursor-glow {
+  position: fixed;
+  width: var(--cursor-glow-size);
+  height: var(--cursor-glow-size);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 71, 87, var(--cursor-glow-opacity)) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: var(--z-cursor);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 200ms ease;
+  mix-blend-mode: screen;
+}
+
+.cursor-glow.active {
+  opacity: 1;
+}
+
+/* Reduced Motion - Disable All 3D Motion */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer,
+  .tilt-3d,
+  .lift-3d,
+  .lift-3d-hero,
+  .magnetic,
+  .magnetic-btn,
+  .press-3d,
+  .reveal-3d,
+  .float-3d,
+  .float-3d-slow,
+  .float-3d-fast,
+  .pulse-glow,
+  .cursor-glow,
+  .feature-card,
+  .cta-card,
+  .step,
+  .faq-card,
+  .credentials-card,
+  .hero-device,
+  .btn,
+  .tab-btn,
+  .nav-link {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+  
+  .reveal-3d {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+  
+  .cursor-glow {
+    display: none !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --shadow-card: 4px 4px 8px rgba(0,0,0,0.5), -4px -4px 8px rgba(255,255,255,0.5);
+    --shadow-floating: 8px 8px 16px rgba(0,0,0,0.5), -8px -8px 16px rgba(255,255,255,0.5);
+    --shadow-pressed: inset 4px 4px 8px rgba(0,0,0,0.5), inset -4px -4px 8px rgba(255,255,255,0.5);
+    --accent: #cc0000;
+    --accent-dark: #990000;
+    --accent-light: #ff3333;
+  }
+  
+  .cursor-glow {
+    display: none;
+  }
+}
+
+/* Focus Visible for Keyboard Navigation */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent), var(--shadow-floating);
+  transform: translateY(-2px) translateZ(10px) !important;
+}
+
+/* ---- Z-INDEX LAYERS ---- */
+.layer-bg { z-index: var(--z-bg); }
+.layer-content { z-index: var(--z-content); position: relative; }
+.layer-floating { z-index: var(--z-floating); position: relative; }
+.layer-ui { z-index: var(--z-ui); position: relative; }
+.layer-cursor { z-index: var(--z-cursor); }
+.layer-noise { z-index: var(--z-noise); }
+
+/* ---- PERFORMANCE OPTIMIZATIONS ---- */
+/* Force GPU acceleration on interactive elements */
+.tilt-3d,
+.lift-3d,
+.lift-3d-hero,
+.magnetic,
+.magnetic-btn,
+.press-3d,
+.feature-card,
+.cta-card,
+.step,
+.faq-card,
+.credentials-card,
+.hero-device,
+.btn,
+.tab-btn,
+.nav-link,
+.reveal-3d {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Will-change optimization - applied via JS when needed */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-shadow {
+  will-change: box-shadow;
+}
+
+.will-change-all {
+  will-change: transform, box-shadow;
+}
+
+/* Clean up will-change after animation */
+.will-change-cleanup {
+  will-change: auto;
+}

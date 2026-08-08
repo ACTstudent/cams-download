@@ -2,280 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CAMS — Computer Account Management System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAMS – Computer Account Management System</title>
   <meta name="description" content="CAMS – lightweight LAN classroom management system. Download server and client installers.">
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-..." crossorigin="anonymous">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.6/css/all.min.css" rel="stylesheet">
+  <!-- Custom style -->
+  <link href="css/cofounder.css" rel="stylesheet">
 </head>
 <body>
-
-  <!-- Cursor glow (interactive) -->
-  <div class="cursor-glow" id="cursorGlow"></div>
-
   <!-- Navigation -->
-  <nav class="nav layer-ui">
-    <a class="nav-logo" href="#">CAMS<span class="accent-text">/</span></a>
-    <div class="nav-status">
-      <span class="led online"></span>
-      <span class="mono-label">SYSTEM ONLINE</span>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" x-data="nav()">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">CAMS/</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" :class="{active: active==='whats'}" href="#whats">WHAT’S CAMS</a></li>
+          <li class="nav-item"><a class="nav-link" :class="{active: active==='install'}" href="#install">INSTALL</a></li>
+          <li class="nav-item"><a class="nav-link" :class="{active: active==='operate'}" href="#operate">OPERATE</a></li>
+          <li class="nav-item"><a class="nav-link" :class="{active: active==='customize'}" href="#customize">CUSTOMIZE</a></li>
+        </ul>
+      </div>
     </div>
-    <button class="nav-link magnetic" onclick="switchTab('whats')">What's CAMS</button>
-    <button class="nav-link magnetic" onclick="switchTab('install')">How to Install</button>
-    <button class="nav-link magnetic" onclick="switchTab('operate')">How to Operate</button>
-    <button class="nav-link magnetic" onclick="switchTab('customize')">How to Customize</button>
   </nav>
 
-  <!-- Hero (same as before) -->
-  <header class="hero perspective-wrapper layer-content" id="heroSection">
-    <div class="hero-text parallax-layer" data-depth="mid">
-      <p class="mono-label">COMPUTER ACCOUNT MANAGEMENT SYSTEM — V2.5</p>
-      <h1>Control every <span class="accent-text">machine</span> in the classroom.</h1>
-      <p class="hero-tagline">CAMS is a lightweight LAN classroom management system. Auto‑discovery, real‑time monitoring, and role‑based control – all on‑premise.</p>
-      <div class="hero-buttons parallax-layer" data-depth="fg">
-        <button class="btn btn-primary magnetic-btn" onclick="switchTab('install')">
-          <span class="led accent"></span>Install CAMS
-        </button>
-        <button class="btn btn-outline magnetic-btn" onclick="switchTab('operate')">
-          <span class="led"></span>How it works
-        </button>
+  <!-- Hero video -->
+  <header class="hero">
+    <video class="hero-video" playsinline autoplay muted loop>
+      <source src="https://i.imgur.com/mwWIGJJ.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay">
+      <h1 class="hero-title">CONTROL EVERY COMPUTER IN YOUR CLASSROOM</h1>
+      <p class="hero-tagline">CAMS – Lightweight LAN Classroom Management</p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#install">Download Server</a>
+        <a class="btn btn-outline-primary" href="#operate">Explore Features</a>
       </div>
     </div>
-    <div class="hero-device tilt-3d lift-3d-hero parallax-layer" data-depth="hero" id="heroDevice">
-      <div class="device-screen">
-        <span class="screen-led"></span>
-        <div class="screen-grid">
-          <!-- placeholder grid cells -->
-          <span class="screen-cell"></span><span class="screen-cell"></span><span class="screen-cell"></span>
-          <span class="screen-cell"></span><span class="screen-cell"></span><span class="screen-cell"></span>
-          <span class="screen-cell"></span><span class="screen-cell"></span><span class="screen-cell"></span>
-          <span class="screen-cell"></span><span class="screen-cell"></span><span class="screen-cell"></span>
-          <span class="screen-cell"></span><span class="screen-cell"></span><span class="screen-cell"></span>
-        </div>
-        <p class="device-label">REMOTE.ACCESS://LAN</p>
-      </div>
-      <div class="device-vents">
-        <span class="device-vent"></span><span class="device-vent"></span>
-        <span class="device-vent"></span><span class="device-vent"></span>
-        <span class="device-vent"></span><span class="device-vent"></span>
-        <span class="device-vent"></span><span class="device-vent"></span>
-      </div>
-    </div>
-    <div class="hero-particles-floating"></div>
   </header>
 
-  <!-- Tab navigation bar (mirrors main nav) -->
-  <div class="tabs-container layer-ui">
-    <div class="tabs-bar">
-      <button class="tab-btn active magnetic" id="btn-tab-whats" onclick="switchTab('whats')">
-        <span class="led accent"></span>1. WHAT'S CAMS
-      </button>
-      <button class="tab-btn magnetic" id="btn-tab-install" onclick="switchTab('install')">
-        <span class="led"></span>2. INSTALL
-      </button>
-      <button class="tab-btn magnetic" id="btn-tab-operate" onclick="switchTab('operate')">
-        <span class="led"></span>3. OPERATE
-      </button>
-      <button class="tab-btn magnetic" id="btn-tab-customize" onclick="switchTab('customize')">
-        <span class="led"></span>4. CUSTOMIZE
-      </button>
-    </div>
-  </div>
-
-  <!-- Tab panels -->
-
-  <!-- WHAT'S CAMS -->
-  <div class="tab-panel active" id="tab-whats">
-    <section class="section">
-      <div class="section-header reveal-3d">
-        <p class="mono-label">INTRODUCTION</p>
-        <h2>What is CAMS?</h2>
-      </div>
-      <p class="text-muted" style="max-width:800px;margin:auto;line-height:1.7;">
+  <main class="container my-5">
+    <!-- WHAT’S CAMS -->
+    <section id="whats" class="section py-5 text-center">
+      <p class="lead">INTRODUCTION</p>
+      <h2>What’s CAMS?</h2>
+      <p class="mx-auto" style="max-width:800px;">
         CAMS (Computer Account Management System) is a self‑hosted solution for managing computers in a classroom or lab environment. It provides UDP auto‑discovery, live screen monitoring, role‑based security, and a simple installer for both server and client.
       </p>
     </section>
-  </div>
 
-  <!-- HOW TO INSTALL -->
-  <div class="tab-panel" id="tab-install">
-    <section class="section">
-      <div class="section-header reveal-3d">
-        <p class="mono-label">SETUP GUIDE</p>
-        <h2>How to Install CAMS</h2>
-      </div>
-      <div class="steps-grid" style="margin-bottom:48px;">
-        <div class="step lift-3d tilt-3d reveal-3d" data-reveal-delay="0">
-          <span class="step-number magnetic">01</span>
-          <h3>Server Installer</h3>
-          <p>Download <strong>CAMS‑Server‑Setup.exe</strong> and run it on the teacher PC. The installer creates shortcuts, opens the firewall, and launches the dashboard automatically.</p>
+    <!-- INSTALL -->
+    <section id="install" class="section py-5 bg-light text-center">
+      <p class="lead">SETUP GUIDE</p>
+      <h2>How to Install CAMS</h2>
+      <div class="row g-4 mt-4">
+        <div class="col-md-4">
+          <div class="cta-card">
+            <i class="fas fa-server fa-2x mb-2"></i>
+            <h5>Server Installer</h5>
+            <p>Download <strong>CAMS‑Server‑Setup.exe</strong> and run it on the teacher PC.</p>
+          </div>
         </div>
-        <div class="step lift-3d tilt-3d reveal-3d" data-reveal-delay="1">
-          <span class="step-number magnetic">02</span>
-          <h3>Client Installer</h3>
-          <p>Download <strong>CAMS‑Client‑Setup.exe</strong> on each student PC. Provide the server address if auto‑discovery fails.</p>
+        <div class="col-md-4">
+          <div class="cta-card">
+            <i class="fas fa-laptop-code fa-2x mb-2"></i>
+            <h5>Client Installer</h5>
+            <p>Download <strong>CAMS‑Client‑Setup.exe</strong> on each student PC.</p>
+          </div>
         </div>
-        <div class="step lift-3d tilt-3d reveal-3d" data-reveal-delay="2">
-          <span class="step-number magnetic">03</span>
-          <h3>First Login</h3>
-          <p>Default credentials: <code>admin / admin123</code>. Change passwords immediately in the admin panel.</p>
+        <div class="col-md-4">
+          <div class="cta-card">
+            <i class="fas fa-lock fa-2x mb-2"></i>
+            <h5>First Login</h5>
+            <p>Default credentials <code>admin / admin123</code>. Change after first login.</p>
+          </div>
         </div>
       </div>
     </section>
-  </div>
 
-  <!-- HOW TO OPERATE -->
-  <div class="tab-panel" id="tab-operate">
-    <section class="section">
-      <div class="section-header reveal-3d">
-        <p class="mono-label">OPERATIONS</p>
-        <h2>How to Operate CAMS</h2>
-      </div>
-      <div class="feature-grid">
-        <div class="feature-card lift-3d tilt-3d reveal-3d" data-reveal-delay="0">
-          <div class="feature-icon magnetic">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"></circle>
-              <circle cx="12" cy="12" r="3.5"></circle>
-              <line x1="12" y1="12" x2="20" y2="12"></line>
-            </svg>
+    <!-- OPERATE -->
+    <section id="operate" class="section py-5 text-center">
+      <p class="lead">FEATURES</p>
+      <h2>How to Operate CAMS</h2>
+      <div class="row g-4 mt-4">
+        <div class="col-md-3">
+          <div class="feature-card">
+            <i class="fas fa-broadcast-tower fa-2x mb-2"></i>
+            <h5>UDP Auto‑Discovery</h5>
+            <p>Clients auto‑locate the server on the LAN without manual IP entry.</p>
           </div>
-          <h3>UDP Auto‑Discovery</h3>
-          <p>Clients automatically locate the server on the LAN without any manual IP entry.</p>
         </div>
-        <div class="feature-card lift-3d tilt-3d reveal-3d" data-reveal-delay="1">
-          <div class="feature-icon magnetic">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2"></rect>
-              <line x1="8" y1="21" x2="16" y2="21"></line>
-              <line x1="12" y1="17" x2="12" y2="21"></line>
-            </svg>
+        <div class="col-md-3">
+          <div class="feature-card">
+            <i class="fas fa-desktop fa-2x mb-2"></i>
+            <h5>Live Screen Monitoring</h5>
+            <p>View student screens in real‑time via WebSocket.</p>
           </div>
-          <h3>Live Screen Monitoring</h3>
-          <p>View student screens in real‑time via a SignalR WebSocket connection.</p>
         </div>
-        <div class="feature-card lift-3d tilt-3d reveal-3d" data-reveal-delay="2">
-          <div class="feature-icon magnetic">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-            </svg>
+        <div class="col-md-3">
+          <div class="feature-card">
+            <i class="fas fa-user-shield fa-2x mb-2"></i>
+            <h5>Role‑Based Security</h5>
+            <p>Separate admin, teacher, and student permissions with CSRF protection.</p>
           </div>
-          <h3>Role‑Based Security</h3>
-          <p>Separate admin, teacher, and student permissions with CSRF protection and rate‑limited logins.</p>
         </div>
-        <div class="feature-card lift-3d tilt-3d reveal-3d" data-reveal-delay="3">
-          <div class="feature-icon magnetic">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
+        <div class="col-md-3">
+          <div class="feature-card">
+            <i class="fas fa-database fa-2x mb-2"></i>
+            <h5>Multi‑Database Support</h5>
+            <p>SQLite out of the box, or switch to SQL Server / MySQL via configuration.</p>
           </div>
-          <h3>Multi‑Database Support</h3>
-          <p>SQLite out of the box, or switch to SQL Server / MySQL via `appsettings.json`.</p>
-        </div>
-        <div class="feature-card lift-3d tilt-3d reveal-3d" data-reveal-delay="4">
-          <div class="feature-icon magnetic">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-          </div>
-          <h3>Auto‑Launch Dashboard</h3>
-          <p>Server.exe automatically opens the web dashboard after installation.</p>
         </div>
       </div>
     </section>
-  </div>
 
-  <!-- HOW TO CUSTOMIZE -->
-  <div class="tab-panel" id="tab-customize">
-    <section class="section">
-      <div class="section-header reveal-3d">
-        <p class="mono-label">CUSTOMIZATION & DOWNLOADS</p>
-        <h2>Tailor CAMS to Your Needs</h2>
-      </div>
-
-      <!-- Download cards -->
-      <div class="cta-grid" style="margin-bottom:48px;">
-        <div class="cta-card lift-3d tilt-3d reveal-3d" data-reveal-delay="0">
-          <div class="cta-icon magnetic">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="8" rx="2"></rect>
-              <rect x="2" y="14" width="20" height="8" rx="2"></rect>
-              <line x1="6" y1="6" x2="6.01" y2="6"></line>
-              <line x1="6" y1="18" x2="6.01" y2="18"></line>
-            </svg>
+    <!-- CUSTOMIZE -->
+    <section id="customize" class="section py-5 bg-light text-center">
+      <p class="lead">CUSTOMIZE & CONTACT</p>
+      <h2>Tailor CAMS to Your Needs</h2>
+      <div class="row g-4 justify-content-center mt-4">
+        <div class="col-md-5">
+          <div class="cta-card">
+            <i class="fas fa-download fa-2x mb-2"></i>
+            <h5>Server Installer</h5>
+            <a class="btn btn-primary mt-2" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Server-Setup.exe" download>Download Server (.exe)</a>
           </div>
-          <h2>Server Installer</h2>
-          <p class="version mono">v2.5 · Windows x64 · ~14 MB</p>
-          <a class="btn btn-primary magnetic-btn" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Server-Setup.exe" download>
-            <span class="led accent"></span>Download Server (.exe)
-          </a>
         </div>
-        <div class="cta-card lift-3d tilt-3d reveal-3d" data-reveal-delay="1">
-          <div class="cta-icon magnetic">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="8" rx="2"></rect>
-              <rect x="2" y="14" width="20" height="8" rx="2"></rect>
-              <line x1="6" y1="6" x2="6.01" y2="6"></line>
-              <line x1="6" y1="18" x2="6.01" y2="18"></line>
-            </svg>
+        <div class="col-md-5">
+          <div class="cta-card">
+            <i class="fas fa-download fa-2x mb-2"></i>
+            <h5>Client Installer</h5>
+            <a class="btn btn-outline-primary mt-2" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Client-Setup.exe" download>Download Client (.exe)</a>
           </div>
-          <h2>Client Installer</h2>
-          <p class="version mono">v2.5 · Windows x64 · ~64 MB</p>
-          <a class="btn btn-outline magnetic-btn" href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/releases/latest/download/CAMS-Client-Setup.exe" download>
-            <span class="led accent"></span>Download Client (.exe)
-          </a>
         </div>
       </div>
-
-      <!-- Example customization options -->
-      <div class="credentials-card lift-3d reveal-3d">
-        <p class="cred-title">DEFAULT SEEDed ACCOUNTS</p>
-        <div class="credential-row"><span class="mono">admin</span><span>/</span><span class="mono">admin123</span><span class="role-tag">Admin</span></div>
-        <div class="credential-row"><span class="mono">teacher1</span><span>/</span><span class="mono">teacher123</span><span class="role-tag">Teacher</span></div>
-        <div class="credential-row"><span class="mono">student1</span><span>/</span><span class="mono">student123</span><span class="role-tag">Student</span></div>
-        <p class="credential-note">Change these passwords immediately after first login.</p>
-      </div>
+      <p class="mt-4">Have questions? <a href="mailto:nefisho@gmail.com" class="mail-link">Drop me an e‑mail</a></p>
     </section>
-  </div>
+  </main>
 
-  <!-- Footer -->
-  <footer class="footer layer-ui">
-    <span><span class="led online"></span>SYSTEM ONLINE</span>
-    <a href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale">Source Code</a>
-    <a href="https://github.com/ACTstudent/RemoteAcessMonitoringSoftware4sale/blob/main/LICENSE">License</a>
-    <span>&copy; 2026 CAMS · Built for LAN classrooms</span>
+  <footer class="bg-dark text-center text-white py-3">
+    <p>&copy; 2026 CAMS · Built for LAN classrooms</p>
   </footer>
 
-  <!-- Main JS loader -->
-  <script src="js/main.js"></script>
-  <script>
-    function switchTab(tabId) {
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        const isTarget = btn.id === 'btn-tab-' + tabId;
-        btn.classList.toggle('active', isTarget);
-        const led = btn.querySelector('.led');
-        if (led) led.classList.toggle('accent', isTarget);
-      });
-      document.querySelectorAll('.tab-panel').forEach(panel => {
-        panel.classList.toggle('active', panel.id === 'tab-' + tabId);
-      });
-      window.location.hash = tabId;
-      const tabsContainer = document.querySelector('.tabs-container');
-      if (tabsContainer) {
-        window.scrollTo({ top: tabsContainer.offsetTop - 20, behavior: 'smooth' });
-      }
-    }
-    window.addEventListener('DOMContentLoaded', () => {
-      const hash = window.location.hash.replace('#', '');
-      if (['whats','install','operate','customize'].includes(hash)) {
-        switchTab(hash);
-      }
-    });
-  </script>
+  <!-- Bootstrap JS bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+  <!-- Alpine.js -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.2/dist/cdn.min.js" defer></script>
+  <!-- Custom JS -->
+  <script src="js/cofounder.js"></script>
 </body>
 </html>

@@ -1,0 +1,39 @@
+/* Warm cloud palette */
+:root {
+  --bg: #1A1D1F;       /* dark charcoal */
+  --fg: #F5F5F5;       /* off‑white */
+  --accent: #FFD54F;   /* warm golden */
+  --accent-dark: #FFAB40;
+  --border: #444444;
+}
+
+/* Global resets */
+html,body {margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:'Inter',sans-serif;}
+
+/* Hero */
+.hero {position:relative;overflow:hidden;height:100vh;}
+.hero-video {position:fixed;inset:0;width:100vw;height:100vh;object-fit:cover;z-index:-1;}
+.hero-overlay {display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;color:var(--fg);text-shadow:0 0 8px rgba(0,0,0,0.5);}
+.hero-title {font-size:3rem;font-weight:700;margin:0;}
+.hero-tagline {font-size:1.25rem;margin-top:.5rem;}
+.hero-buttons .btn {margin:.3rem;}
+
+/* Navbar */
+.navbar .nav-link.active {font-weight:700;color:var(--accent)!important;}
+
+/* Sections */
+.section {padding:4rem 0;}
+.section.bg-light {background-color:#2e3133;}
+
+/* Cards */
+.cta-card, .feature-card {background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:.6rem;padding:1.5rem;transition:transform .2s,background .2s;}
+.cta-card:hover, .feature-card:hover {transform:translateY(-4px);background:rgba(255,255,255,0.1);}
+.feature-icon {font-size:2.2rem;color:var(--accent);margin-bottom:.5rem;}
+
+/* Footer */
+footer {background:#111; color:var(--fg);}
+
+/* Utility */
+.text-center {text-align:center;}
+.mx-auto {margin-left:auto;margin-right:auto;}
+
